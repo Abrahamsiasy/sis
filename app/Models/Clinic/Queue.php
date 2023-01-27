@@ -12,6 +12,10 @@ class Queue extends Model
     use HasFactory;
     //queue has one student and one room
     //que has one student and one room
+    //fillable student_id and doctor_id
+    protected $fillable = ['student_id', 'doctor_id'];
+
+
     public function student()
     {
         return $this->belongsTo(Student::class);

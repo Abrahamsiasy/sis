@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
-            $table->string('blood_type');
-            $table->integer('height');//in centimeter
-            $table->integer('weight');//in gram
+            $table->string('blood_type')->nullable();
+            $table->integer('height')->nullable();//in centimeter
+            $table->integer('weight')->nullable();//in gram
             $table->timestamps();
         });
     }

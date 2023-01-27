@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Clinic;
 
-use App\Http\Controllers\Controller;
+use App\Models\Student;
+use App\Models\Clinic\Queue;
 use Illuminate\Http\Request;
+use App\Models\Clinic\Campus;
+use App\Http\Controllers\Controller;
+
 
 class ReceptionController extends Controller
 {
@@ -15,6 +19,10 @@ class ReceptionController extends Controller
     public function index()
     {
         //
+        return view('clinic.reception.index', [
+            'students' => Student::paginate(50),
+             'campus' => Campus::all()
+        ]);
     }
 
     /**
@@ -22,9 +30,16 @@ class ReceptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show(Student $student)
     {
         //
+        //dd($student->student_id);
+        $formField['student_id'] = $student->id;
+        //dd($student->student_id);
+        Queue::create($formField);
+        //return view students
+        return redirect('/clinic/reception')->with('status', $student->student_id . 'Added To Queue list');
+
     }
 
     /**
@@ -44,10 +59,7 @@ class ReceptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -36,10 +36,20 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// //Doctor 
+
+
+//student list routes
+
+Route::middleware('auth')->group(function () {
+    Route::get('clinic/reception', [ReceptionController::class, 'index']);
+    Route::get('clinic/reception/{student}', [ReceptionController::class, 'show']);
+});
+
+
+// //Doctor
 // Route::group(['prefix' => 'clinic', 'as' => 'doctor.', 'middleware' => ['auth', 'doctor']], function () {
 // Route::middleware('auth')->group(['prefix' => 'clinic'], function () {
-Route::middleware('auth')->group( function () {
+Route::middleware('auth')->group(function () {
     Route::get('clinic/doctor', [DoctorController::class, 'index']);
     Route::post('clinic/detail/record/lab/{student}', [DoctorController::class, 'storeLabReports']);
     Route::post('clinic/detail/record/med/{student}',  [DoctorController::class, 'storeMedRecord']);

@@ -98,13 +98,12 @@
                                                 @foreach ($students as $key => $student)
                                                     <tr>
 
-                                                        <td>{{ $key + 1}}</td>
-                                                        <td>RU001</td>
-                                                        <td>Name</td>
+                                                        <td>{{ $key + 1 }}</td>
+                                                        <td>{{ $student->student_id }}</td>
+                                                        <td>{{ $student->first_name }}</td>
                                                         <td>
-                                                            <input class="form-check-input" type="checkbox" id="checkbox1">
-                                                            <label class="form-check-label" for="checkbox1"
-                                                                class="label-table"></label>
+                                                            <button type="button "
+                                                                class="btn btn-block btn-success">Success</button>
                                                         </td>
                                                         <td>
                                                             <input class="form-check-input" type="checkbox" id="checkbox1">
@@ -112,8 +111,8 @@
                                                                 class="label-table"></label>
                                                         </td>
                                                         <td>
-                                                            <input class="form-check-input" type="checkbox" id="checkbox1">
-                                                            <label class="form-check-label" for="checkbox1"
+                                                            <input class="form-check-input me-5" type="checkbox" id="checkbox1">
+                                                            <label class="form-check-label me-5" for="checkbox1"
                                                                 class="label-table"></label>
                                                         </td>
                                                     </tr>
