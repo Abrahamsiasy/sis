@@ -18,6 +18,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            
             <div class="row">
                 <div class="col-md-3">
 
@@ -268,91 +269,24 @@
                                             <div class="col-sm-6">
                                                 <!-- checkbox -->
                                                 <ul class="list-group col-sm-12">
-                                                        <select class="list-group-item rounded-0 select" multiple data-mdb-placeholder="Example placeholder" multiple>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                            <option value="4">Four</option>
-                                                            <option value="5">Five</option>
-                                                          </select>
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input class="custom-control-input" id=""
+                                                                type="checkbox">
+                                                            <label
+                                                                class="cursor-pointer font-italic d-block custom-control-label"
+                                                                for="blood">Normal</label>
 
+                                                                <input class="custom-control-input" id="bloodb"
+                                                                type="checkbox">
+                                                            <label
+                                                                class="cursor-pointer font-italic d-block custom-control-label"
+                                                                for="bloodb">Bloodb</label>
+                                                        </div>
+
+                                                    </li>
                                                     
-                                                    <li class="list-group-item">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="faeces"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="faeces">Faeces</label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="urine"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="urine">Urine</label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="sputum"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="sputum">Sputum</label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item rounded-0">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="swab"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="swab">Swab</label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item rounded-0">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="fluids"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="fluids">Fluids</label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item rounded-0">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="tissue"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="tissue">Tissue</label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item rounded-0">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="cytology"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="cytology">Cytology</label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-group-item rounded-0">
-                                                        <div class="custom-control custom-checkbox" id="div_container">
-
-
-                                                        </div>
-                                                    </li>
-                                                    <div class="input-group input-group-sm">
-                                                        <input type="text" class="form-control" id="new_sample">
-                                                        <span class="input-group-append">
-                                                            <p id="add_new_sample" class="btn btn-info btn-lg">Add
-                                                                Other, namely</p>
-                                                        </span>
-                                                    </div>
+                                                    
                                                     
                                                 </ul>
                                             </div>
