@@ -51,11 +51,11 @@ Route::middleware('auth')->group(function () {
 // Route::middleware('auth')->group(['prefix' => 'clinic'], function () {
 Route::middleware('auth')->group(function () {
     Route::get('clinic/doctor', [DoctorController::class, 'index']);
-    Route::post('clinic/detail/record/lab/{student}', [DoctorController::class, 'storeLabReports']);
-    Route::post('clinic/detail/record/med/{student}',  [DoctorController::class, 'storeMedRecord']);
-    Route::post('clinic/detail/record/personal/{student}',  [DoctorController::class, 'storePersonalRecord']);
-    Route::get('clinic/detail/{student}',  [DoctorController::class, 'show']);
-    Route::delete('clinic/detail/{student}',  [DoctorController::class, 'delete']);
+    Route::post('clinic/doctor/detail/record/lab/{student}', [DoctorController::class, 'storeLabReports']);
+    Route::post('clinic/doctor/detail/record/med/{student}',  [DoctorController::class, 'storeMedRecord']);
+    Route::post('clinic/doctor/detail/record/personal/{student}',  [DoctorController::class, 'storePersonalRecord']);
+    Route::get('clinic/doctor/detail/{student}',  [DoctorController::class, 'show']);
+    Route::delete('clinic/doctor/detail/{student}',  [DoctorController::class, 'delete']);
 });
 // Route::group(['prefix' => 'clinic', 'as' => 'lab.', 'middleware' => ['auth', 'lab']], function () {
 // Route::middleware('auth')->group(['prefix' => 'clinic'], function () {

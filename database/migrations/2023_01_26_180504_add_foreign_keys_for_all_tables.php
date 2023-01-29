@@ -69,14 +69,14 @@ return new class extends Migration
         Schema::table('medical_records', function (Blueprint $table) {
 
             //Not needed /to be leted on production
-            $table->unsignedBigInteger('lab_request_id');
+            $table->unsignedBigInteger('lab_request_id')->nullable();
             $table->foreign('lab_request_id')->references('id')->on('lab_requests')->onDelete('cascade');
 
             //select a room based on doctor which is a room user
-            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('doctor_id')->nullable();
             $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
             //student queues
-            $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
         //connect medication to medical record

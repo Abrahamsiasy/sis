@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Clinic;
+
 use App\Http\Controllers\Controller;
 
-use App\Clinic\Models\LabQueue;
-use App\Clinic\Models\Room;
-use App\Clinic\Models\Queue;
+use App\Models\Clinic\LabQueue;
+use App\Models\Clinic\Queue;
+use App\Models\Clinic\LabRequest;
+use App\Models\Clinic\LabResult;
+use App\Models\Clinic\Medication;
+use App\Models\Clinic\MedicalRecord;
+use App\Models\Clinic\PersonalRecord;
 use App\Models\Student;
-use App\Clinic\Models\LabRequest;
-use App\Clinic\Models\LabResult;
-use App\Clinic\Models\Medication;
-use App\Clinic\Models\MedicalRecord;
+
 use Illuminate\Http\Request;
-use App\Models\Medicalhistory;
 
 class DoctorController extends Controller
 {
@@ -24,7 +25,8 @@ class DoctorController extends Controller
     public function index()
     {
         //
-        //dd(Queue::where('status', "0")->paginate(25));
+        
+        //dd(Queue::where('status', 3)->paginate(25));
 
         return view('clinic.doctor.doctor', [
             'students' => Queue::where('status', 0)->paginate(25),
@@ -35,15 +37,6 @@ class DoctorController extends Controller
         Student $student,
         MedicalRecord $histories
     ) {
-        //
-        $histories = MedicalRecord::where('student_id', $student->id)->first();
-        //dd($histories);
-
-        $labhistories = LabResult::where('student_id', $student->id)->get();
-        //dd($labhistories); // returns empty array
-        //dd(count(Medication::where('medicalhistories_id', $histories->id)->get()))
-
-
 
         //change queue status of the student when doctor accepts
         $queueid = Queue::where('student_id', $student->id)->first();
@@ -53,9 +46,16 @@ class DoctorController extends Controller
         $queue->doctor_id = auth()->user()->id;
         $queue->status = 1;
         $queue->save();
+        //dd($queue);
 
 
+        //
+        $histories = MedicalRecord::where('student_id', $student->id)->first();
+        //dd($histories);
 
+        $labhistories = LabResult::where('student_id', $student->id)->get();
+        //dd($labhistories); // returns empty array
+        //dd(count(Medication::where('medicalhistories_id', $histories->id)->get()))
 
 
         //check if the student id existes in medical history table
@@ -71,10 +71,11 @@ class DoctorController extends Controller
 
         } else {
             //ID exists
-            $medhistories = Medication::where('medicalhistories_id', $histories->id)->get();
-            $personalmedhistories = PersonalRecord::where('medicalhistories_id', $histories->id)->get();
+            $medhistories = Medication::where('medical_record_id', $histories->id)->get();
+            $personalmedhistories = PersonalRecord::where('medical_record_id', $histories->id)->get();
             // dd($medhistories);
         }
+        //dd($histories);
 
 
 
@@ -105,7 +106,7 @@ class DoctorController extends Controller
         $formField['student_id '] = $student->id;
         // dd($formField);
         // // or anther method
-        $labReport = new Labreport();
+        $labReport = new LabRequest();
         $labReport->title = $request->title;
         $labReport->description = $request->description;
         $labReport->student_id = $student->id;
@@ -116,8 +117,8 @@ class DoctorController extends Controller
 
         if ($labReport->id) {
             //create lab que with labreport id
-            $labQueue = new Labqueues();
-            $labQueue->labreport_id = $labReport->id;
+            $labQueue = new LabQueue();
+            $labQueue->lab_request_id = $labReport->id;
             $labQueue->student_id = $student->id;
             $labQueue->save();
 
@@ -137,14 +138,16 @@ class DoctorController extends Controller
         $histories = MedicalRecord::where('student_id', $student->id)->first();
         // $formField['doctor_id '] = auth()->user()->id;
         // $formField['student_id '] = $student->id;
-        // $formField['medicalhistories_id '] = $histories->id;
+        // $formField['medical_record_id '] = $histories->id;
         // dd($formField);
         $medicalrecord = new Medication();
 
-        $medicalrecord->name = $formField['name'];
-        $medicalrecord->dose = $formField['dose'];
-        $medicalrecord->description = $formField['description'];
-        $medicalrecord->medicalhistories_id = $histories->id;
+        $medicalrecord->name = $formField['name'];//name
+        $medicalrecord->amount = $formField['amount'];//amount in grams
+        $medicalrecord->frequency = $formField['frequency'];//daily how often
+        $medicalrecord->why = $formField['why'];//why 
+        $medicalrecord->how_much = $formField['how_much'];//how many pills
+        $medicalrecord->medical_record_id = $histories->id;
         $medicalrecord->save();
         //dd($medicalrecord->id);
         // // or anther method
@@ -169,14 +172,14 @@ class DoctorController extends Controller
         $histories = MedicalRecord::where('student_id', $student->id)->first();
         // $formField['doctor_id '] = auth()->user()->id;
         // $formField['student_id '] = $student->id;
-        // $formField['medicalhistories_id '] = $histories->id;
+        // $formField['medical_record_id '] = $histories->id;
         // dd($formField);
         $personalmedicalrecord = new PersonalRecord();
 
         $personalmedicalrecord->disease_or_conditions = $formField['disease_or_conditions'];
         $personalmedicalrecord->current = $formField['current'];
         $personalmedicalrecord->comments = $formField['comments'];
-        $personalmedicalrecord->medicalhistories_id = $histories->id;
+        $personalmedicalrecord->medical_record_id = $histories->id;
         $personalmedicalrecord->save();
         ($personalmedicalrecord);
         // // or anther method

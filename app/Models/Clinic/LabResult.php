@@ -5,7 +5,7 @@ namespace App\Models\Clinic;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LabResults extends Model
+class LabResult extends Model
 {
     use HasFactory;
 

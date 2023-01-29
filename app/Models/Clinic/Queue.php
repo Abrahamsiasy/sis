@@ -10,6 +10,9 @@ use App\Models\Student;
 class Queue extends Model
 {
     use HasFactory;
+    //table queues
+    protected $table = 'queues';
+
     //queue has one student and one room
     //que has one student and one room
     //fillable student_id and doctor_id

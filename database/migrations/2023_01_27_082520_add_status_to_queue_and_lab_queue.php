@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::table('queues', function (Blueprint $table) {
             //
-            $table->string('status')->default("0");
+            $table->tinyInteger('status')->default(0);
+            $table->boolean('emrgency')->default(0);
         });
 
         Schema::table('lab_queues', function (Blueprint $table) {
             //
-            $table->string('status')->default("0");
+            $table->tinyInteger('status')->default(0);
+            $table->boolean('emrgency')->default(0);
         });
     }
 
@@ -34,11 +36,14 @@ return new class extends Migration
         Schema::table('queues', function (Blueprint $table) {
             //
             $table->dropColumn('status');
+            $table->dropColumn('emrgency');
         });
 
         Schema::table('lab_queues', function (Blueprint $table) {
             //
             $table->dropColumn('status');
+            $table->dropColumn('emrgency');
+
         });
     }
 };

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Clinic;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Clinic\LabQueue;
+
 
 class LabQueueController extends Controller
 {
@@ -15,6 +17,11 @@ class LabQueueController extends Controller
     public function index()
     {
         //
+        return view('queue.labqueue',
+        [
+            'queues' => LabQueue::where('status', "0")->paginate(25),
+            'queuesdoc' => LabQueue::where('status', "1")->paginate(25),
+        ]);
     }
 
     /**
