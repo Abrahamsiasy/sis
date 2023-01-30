@@ -32,27 +32,49 @@
                                                 <th>#</th>
                                                 <th>STUDENT ID</th>
                                                 <th>STUDENT NAME</th>
-                                                <th>EMERGENCY LEVEL</th>
                                                 <th>ACTION</th>
+                                                {{-- counter start here --}}
+
+                                                <label id="minutes">00</label>:<label id="seconds">00</label>
+
+                                                <script>
+                                                    var minutesLabel = document.getElementById("minutes");
+                                                    var secondsLabel = document.getElementById("seconds");
+                                                    var totalSeconds = 0;
+                                                    setInterval(setTime, 1000);
+
+                                                    function setTime() {
+                                                        ++totalSeconds;
+                                                        secondsLabel.innerHTML = pad(totalSeconds % 60);
+                                                        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+                                                    }
+
+                                                    function pad(val) {
+                                                        var valString = val + "";
+                                                        if (valString.length < 2) {
+                                                            return "0" + valString;
+                                                        } else {
+                                                            return valString;
+                                                        }
+                                                    }
+                                                </script>
+                                                {{-- counter start here --}}
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($students as $key => $student)
                                                 <tr>
-                                                    <td>1</td>
+                                                    <td>{{ $key }}</td>
                                                     <td>{{ $student->student->student_id }}</td>
                                                     <td>{{ $student->student->first_name }}</td>
-                                                    <td>
-                                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                              <label class="btn bg-olive active">
-                                                                <input type="radio" name="options" id="option" autocomplete="off" checked> NOR
-                                                              </label>
-                                                              <label class="btn btn-danger">
-                                                                <input type="radio" name="options" id="option" autocomplete="off"> EMR
-                                                              </label>
-                                                            </div>
+
+
+                                                    <td>{{ $student->queues->created_at }}</td>
+
+                                                    <td><a href="/clinic/doctor/detail/{{ $student->student->id }}"
+                                                            class="btn btn-primary">ACCEPT</>
                                                     </td>
-                                                    <td><a href="/clinic/doctor/detail/{{ $student->student->id }}" class="btn btn-primary">ACCEPT</></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

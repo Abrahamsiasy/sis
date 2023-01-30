@@ -18,7 +18,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            
+
             <div class="row">
                 <div class="col-md-3">
 
@@ -98,7 +98,7 @@
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="medication">
                                     <!-- The timeline -->
-                                    <form>
+                                    <form method="POST" action="/clinic/doctor/detail/record/lab/{{ $student->id }}" >
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <!-- input -->
@@ -140,7 +140,7 @@
                                         </div>
                                         <div class="card-footer p-0 ">
                                             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                                            <button type="submit" class="btn btn-primary btn-lg">New</button>
+                                            {{-- <button type="submit" class="btn btn-primary btn-lg">New</button> --}}
                                         </div>
                                     </form>
 
@@ -148,7 +148,8 @@
                                 <!-- /.tab-pane -->
 
                                 <div class="tab-pane" id="settings">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" method="POST" action="/clinic/doctor/detail/record/lab/{{ $student->id }}" >
+                                        @csrf
 
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -156,7 +157,7 @@
                                                 <ul class="list-group col-sm-12">
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="blood"
+                                                            <input class="custom-control-input" id="blood" name="blood[]" value="Normal Blood"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -164,10 +165,10 @@
                                                         </div>
 
                                                     </li>
-                                                    
+
                                                     <li class="list-group-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="faeces"
+                                                            <input class="custom-control-input" id="faeces" name="feaces[]"  value="Normal Faeces"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -176,7 +177,7 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="urine"
+                                                            <input class="custom-control-input" id="urine" name="urin[]" value="Normal Urine"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -185,7 +186,7 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="sputum"
+                                                            <input class="custom-control-input" id="sputum" name="sputum[]" value="Normal Sputum"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -194,7 +195,7 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="swab"
+                                                            <input class="custom-control-input" id="swab" name="swap[]" value="Normal Swap"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -203,7 +204,7 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="fluids"
+                                                            <input class="custom-control-input" id="fluids" name="fluids[]" value="Normal Fluids"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -212,7 +213,7 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="tissue"
+                                                            <input class="custom-control-input" id="tissue" name="tissue[]" value="Normal Tissue"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -221,7 +222,7 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="cytology"
+                                                            <input class="custom-control-input" id="cytology" name="cytology[]" value="Normal Cytology"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -271,26 +272,206 @@
                                                 <ul class="list-group col-sm-12">
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id=""
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="blood">Normal</label>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="blooda" name="blood[]" value="Bood Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="blooda">RBC</label>
+                                                            </div>
 
-                                                                <input class="custom-control-input" id="bloodb"
-                                                                type="checkbox">
-                                                            <label
-                                                                class="cursor-pointer font-italic d-block custom-control-label"
-                                                                for="bloodb">Bloodb</label>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="bloodb" name="blood[]" value="Bood Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label" 
+                                                                    for="bloodb">WBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="bloodc" name="blood[]" value="Bood Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="bloodc">HBC</label>
+                                                            </div>
                                                         </div>
-
                                                     </li>
+
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="feacesa" name="feaces[]" value="Faecesa Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="faecesa">FRBC</label>
+                                                            </div>
+
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="feacesb" name="feaces[]" value="Faecesa Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="feacesb">FWBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="feacesc" name="feaces[]" value="Faecesa Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="feacesc">FHBC</label>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="urina" name="urin[]" value="Urine Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="urina">URBC</label>
+                                                            </div>
+
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="urineb" name="urin[]" value="Urine Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="urineb">UWBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="urinc" name="urin[]" value="Urine Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="urinc">UHBC</label>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="sputuma" name="sputum[]" value="Sputuma Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="sputuma">SRBC</label>
+                                                            </div>
+
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="sputumb"  name="sputum[]" value="Sputuma Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="sputumb">SWBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="sputumc" name="sputum[]" value="Sputuma Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="sputumc">SHBC</label>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="swapa"  name="swap[]" value="Swap Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="swapa">SRBC</label>
+                                                            </div>
+
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="swapb" name="swap[]" value="Swap Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="swapb">SWBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="swapc" name="swap[]" value="Swap Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="swapc">HBC</label>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="fluidsa" name="fluids[]" value="Fluid Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="fluidsa">FRBC</label>
+                                                            </div>
+
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="fluidsb"  name="fluids[]"  value="Fluid Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="fluidsb">FWBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="fluidsc" name="fluids[]"  value="Fluid Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="fluidsc">FHBC</label>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="tissuea" name="tissue[]"  value="Tisseu Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="tissuea">TRBC</label>
+                                                            </div>
+
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="tissueb" name="tissue[]"  value="Tisseu Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="tissueb">TWBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="tissuec" name="tissue[]"  value="Tisseu Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="tissuec">THBC</label>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                    <li class="list-group-item rounded-0 col-sm-12">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="cytologya" name="cytology[]"  value="Cytology Type 1"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="cytologya">TRBC</label>
+                                                            </div>
+
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="cytologyb" name="cytology[]" value="Cytology Type 2"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="cytologyb">TWBC</label>
+                                                            </div>
+                                                            <div class="d-inline m-4">
+                                                                <input class="custom-control-input " id="cytologyc" name="cytology[]" value="Cytology Type 3"
+                                                                    type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
+                                                                    for="cytologyc">THBC</label>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
                                                     
-                                                    
-                                                    
+
+
+
                                                 </ul>
                                             </div>
-                                            
+
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">

@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bbchoices.min.css') }}">
 
-    bbchoices.min.css
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -100,9 +98,7 @@
 
 @vite('resources/js/app.js')
 <!-- AdminLTE App -->
-<script src="{{ asset('js/jquery.min.js') }}" defer></script>
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
-<script src="{{ asset('js/bbchoices.min.js') }}" defer></script>
 
 @yield('scripts')
 </body>

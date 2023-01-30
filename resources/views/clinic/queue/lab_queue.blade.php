@@ -1,3 +1,4 @@
+{{-- view for queues of students to be accepted by the doctor  --}}
 @extends('layouts.app')
 
 @section('content')
@@ -21,14 +22,43 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-text">
-                                {{ __('You are logged in!') }}
-                            </p>
+                                <!-- Table with panel -->
+                            <div class="card card-cascade narrower">
+                                <!-- /.card-header -->
+                                <div class="card-body table-responsive p-0">
+                                    <table class="table table-hover text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>STUDENT ID</th>
+                                                <th>STUDENT NAME</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($queues as $key => $queue)
+                                                <tr>
+                                                    <td>{{$key}}</td>
+                                                    <td>{{ $queue->laRequest->student->student_id}}</td>
+                                                    <td>{{ $queue->student->first_name }}</td>
+                                                    
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+
                         </div>
+                        <!-- Table with panel -->
+                        </p>
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
 @endsection

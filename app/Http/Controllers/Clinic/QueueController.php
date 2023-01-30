@@ -26,7 +26,7 @@ class QueueController extends Controller
         //$queue = Queue::where('status', 0)->paginate(25);
 
 
-        return view('queue.queue', [
+        return view('clinic.queue.queue', [
             'queues' => Queue::where('status', "0")->paginate(25),
             'queuesdoc' => Queue::where('status', "1")->paginate(25),
         ]);

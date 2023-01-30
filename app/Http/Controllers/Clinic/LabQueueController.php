@@ -17,7 +17,7 @@ class LabQueueController extends Controller
     public function index()
     {
         //
-        return view('queue.labqueue',
+        return view('clinic.queue.lab_queue',
         [
             'queues' => LabQueue::where('status', "0")->paginate(25),
             'queuesdoc' => LabQueue::where('status', "1")->paginate(25),

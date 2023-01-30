@@ -25,9 +25,19 @@ class DoctorController extends Controller
     public function index()
     {
         //
-        
-        //dd(Queue::where('status', 3)->paginate(25));
 
+        //dd(Queue::where('status', 3)->paginate(25));
+        // $timecountdownend = strtotime("2020-05-18 14:30:00");
+        // $timecountdownstart = strtotime("now");
+        // $startdatetime = "2020-05-18 14:07:00"; //variable for starting datetime
+
+        // $timeleft = $timecountdownend - $timecountdownstart;
+
+        // echo ($timeleft) . "<br>";
+        // echo (PHP_EOL). "<br>";
+        // echo ($timeleft * (-1)). "<br>";
+        // echo (PHP_EOL). "<br>";
+        // echo (date('Y-m-d h:i:sa', strtotime($startdatetime) + $timeleft * (-1))). "<br>";
         return view('clinic.doctor.doctor', [
             'students' => Queue::where('status', 0)->paginate(25),
         ]);
@@ -95,32 +105,32 @@ class DoctorController extends Controller
     //with that doctor id for lab que and create lab que to be edited
     //with lab assistant id then redirect back to doc page with list of student
     //to be accepted
-    public function storeLabReports(Request $request, Student $student)
+    public function storeLabRequests(Request $request, Student $student)
     {
-        $formField = $request->validate([
-            'title' => 'required',
-            'description'  => 'required'
-
-        ]);
-        $formField['doctor_id '] = auth()->user()->id;
-        $formField['student_id '] = $student->id;
-        // dd($formField);
-        // // or anther method
-        $labReport = new LabRequest();
-        $labReport->title = $request->title;
-        $labReport->description = $request->description;
-        $labReport->student_id = $student->id;
-        $labReport->doctor_id = auth()->user()->id;
-        $labReport->save();
+        $a = 1;
+        //get all values from the check box except the token and save to lab queue
+        foreach ($request->except('_token') as $req) {
+            foreach ($req as $labRequest) {
+                //echo $a++ . $labRequest . "<hr>";
+                $labRequests = new labRequest();
+                $labRequests->title = $labRequest;
+                $labRequests->description = $labRequest;
+                $labRequests->student_id = $student->id;
+                $labRequests->doctor_id = auth()->user()->id;
+                // echo $labRequest . "<hr>";
+                $labRequests->save();
+            }
+        }
         //dd($labReport->id);
         //Labreport::create($formField);
 
-        if ($labReport->id) {
+        if ($labRequests->id) {
             //create lab que with labreport id
             $labQueue = new LabQueue();
-            $labQueue->lab_request_id = $labReport->id;
+            $labQueue->lab_request_id = $labRequests->id;
             $labQueue->student_id = $student->id;
             $labQueue->save();
+            // dd($labQueue->id);
 
             //redirect to its own page
             return redirect('/clinic/doctor/detail/' . $student->id)->with('status', 'Lab sent!');
@@ -142,11 +152,11 @@ class DoctorController extends Controller
         // dd($formField);
         $medicalrecord = new Medication();
 
-        $medicalrecord->name = $formField['name'];//name
-        $medicalrecord->amount = $formField['amount'];//amount in grams
-        $medicalrecord->frequency = $formField['frequency'];//daily how often
-        $medicalrecord->why = $formField['why'];//why 
-        $medicalrecord->how_much = $formField['how_much'];//how many pills
+        $medicalrecord->name = $formField['name']; //name
+        $medicalrecord->amount = $formField['amount']; //amount in grams
+        $medicalrecord->frequency = $formField['frequency']; //daily how often
+        $medicalrecord->why = $formField['why']; //why 
+        $medicalrecord->how_much = $formField['how_much']; //how many pills
         $medicalrecord->medical_record_id = $histories->id;
         $medicalrecord->save();
         //dd($medicalrecord->id);

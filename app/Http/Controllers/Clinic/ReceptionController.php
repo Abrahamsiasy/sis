@@ -19,8 +19,10 @@ class ReceptionController extends Controller
     public function index()
     {
         //
+        //dd(Student::paginate(50));
+
         return view('clinic.reception.index', [
-            'students' => Student::paginate(50),
+                'students' => Student::paginate(50),
              'campus' => Campus::all()
         ]);
     }
