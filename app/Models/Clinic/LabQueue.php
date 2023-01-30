@@ -25,4 +25,9 @@ class LabQueue extends Model
     {
         return $this->belongsTo(LabRequest::class);
     }
+
+    public function student()
+    {
+        return $this->belongsTo(student::class);
+    }
 }

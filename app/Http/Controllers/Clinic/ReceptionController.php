@@ -32,13 +32,22 @@ class ReceptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Request $request, Student $student)
     {
         //
         //dd($student->student_id);
-        $formField['student_id'] = $student->id;
-        //dd($student->student_id);
-        Queue::create($formField);
+        //dd($request->except('_token'));
+        
+        // $formField['student_id'] = $student->id;
+        // $formField['status'] = "$request->status";
+        //dd($formField['status']);
+        //Queue::create($formField);
+                
+        $input = new Queue;
+        $input->student_id = $student->id;
+        $input->status = $request->status;
+        $input->save();
+        //dd($input);
         //return view students
         return redirect('/clinic/reception')->with('status', $student->student_id . 'Added To Queue list');
 

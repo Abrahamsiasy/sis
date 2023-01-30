@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal_records', function (Blueprint $table) {
-            $table->id();
-            $table->string('disease_or_conditions');
-            $table->boolean('current')->default(0);
-            $table->string('comments');
-            $table->timestamps();
+        Schema::table('lab_requests', function (Blueprint $table) {
+            //
+            $table->unsignedBigInteger('lab_queue_id')->nullable();
+            $table->foreign('lab_queue_id')->references('id')->on('lab_queues')->onDelete('cascade');
         });
     }
 
@@ -29,6 +27,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_records');
+        Schema::table('lab_requests', function (Blueprint $table) {
+            //
+            $table->dropForeign('lab_queue_id');
+        });
     }
 };

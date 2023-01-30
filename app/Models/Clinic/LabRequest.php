@@ -41,4 +41,5 @@ class LabRequest extends Model
         return $this->hasMany(Labqueues::class);
     }
 
+    
 }

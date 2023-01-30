@@ -65,10 +65,13 @@
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#activity"
-                                        data-toggle="tab">Activity</a></li>
+                                        data-toggle="tab">Medical Record</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#medication" data-toggle="tab">Medication</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a>
+                                <li class="nav-item"><a class="nav-link" href="#lab_form" data-toggle="tab">Labratory Form</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="#personal" data-toggle="tab">Personal
+                                        Form</a>
                                 </li>
                             </ul>
                         </div><!-- /.card-header -->
@@ -79,26 +82,207 @@
                                     <div class="post">
 
                                         <!-- /.user-block -->
-                                        <p>
-                                            Lorem ipsum represents a long-held tradition for designers,
-                                            typographers and the like. Some people hate it and argue for
-                                            its demise, but others ignore the hate as they create awesome
-                                            tools to help create filler text for everyone from bacon lovers
-                                            to Charlie Sheen fans.
-                                        </p>
+                                        <h3 class="font-medium leading-tight text-2xl mt-0 mb-2 text-blue-600">
+                                            Medication History
+                                        </h3>
+                                        <!-- / medication card startcol -->
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title">List of medication taken </h3>
+
+                                                <div class="card-tools">
+                                                    <ul class="pagination pagination-sm float-right">
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="#">&laquo;</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="#">&raquo;</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body p-0 ">
+                                                <table class="table  ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 10px">#</th>
+                                                            <th>Medication Name</th>
+                                                            <th>Amount</th>
+                                                            <th>Frequency</th>
+                                                            <th>How Much</th>
+                                                            <th>Reson</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($medhistories as $key => $medhistory)
+                                                            <tr>
+                                                                <td>1.</td>
+                                                                <td>{{ $medhistory->name }}</td>
+                                                                <td>
+                                                                    <span
+                                                                        class="badge bg-success">{{ $medhistory->amount }}</span>
+                                                                </td>
+                                                                <td><span
+                                                                        class="badge bg-success">{{ $medhistory->frequency }}</span>
+                                                                </td>
+                                                                <td><span
+                                                                        class="badge bg-success">{{ $medhistory->how_much }}</span>
+                                                                </td>
+                                                                <td><span
+                                                                        class="badge bg-success">{{ $medhistory->why }}</span>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+                                        <!-- /. medicatin card end-->
 
 
 
-                                        <input class="form-control form-control-sm" type="text"
-                                            placeholder="Type a comment">
+
                                     </div>
 
 
+                                    {{-- lab result list start --}}
+                                    <!-- Post -->
+                                    <div class="d-flex flex-row ">
+                                        <div class="post col-md-6">
+
+                                            <!-- /.user-block -->
+                                            <h3 class="font-medium leading-tight text-2xl mt-0 mb-2 text-blue-600">
+                                                Lab Result History
+                                            </h3>
+                                            <!-- / medication card startcol -->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">List of Lab Results </h3>
+
+                                                    <div class="card-tools">
+                                                        <ul class="pagination pagination-sm float-right">
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">&laquo;</a></li>
+                                                            <li class="page-item"><a class="page-link" href="#">1</a>
+                                                            </li>
+                                                            <li class="page-item"><a class="page-link" href="#">2</a>
+                                                            </li>
+                                                            <li class="page-item"><a class="page-link" href="#">3</a>
+                                                            </li>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">&raquo;</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <div class="card-body p-0 ">
+                                                    <table class="table  ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 10px">#</th>
+                                                                <th>Lab Request</th>
+                                                                <th>Lab Result</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($medhistories as $key => $medhistory)
+                                                                <tr>
+                                                                    <td>1.</td>
+                                                                    <td>{{ $medhistory->name }}</td>
+                                                                    <td> {{ $medhistory->amount }}
+                                                                    </td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                            <!-- /. medicatin card end-->
+
+
+
+
+                                        </div>
+                                        {{-- lab resukt list end --}}
+                                        {{-- Personal info list end --}}
+
+                                        <div class="post col-md-6">
+
+                                            <!-- /.user-block -->
+                                            <h3 class="font-medium leading-tight text-2xl mt-0 mb-2 text-blue-600">
+                                                Personal History
+                                            </h3>
+                                            <!-- / medication card startcol -->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Personal Behaviour and additional informaion
+                                                    </h3>
+
+                                                    <div class="card-tools">
+                                                        <ul class="pagination pagination-sm float-right">
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">&laquo;</a></li>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">1</a></li>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">2</a></li>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">3</a></li>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">&raquo;</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <div class="card-body p-0 ">
+                                                    <table class="table  ">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <th style="width: 10px">#</th>
+                                                                <th>Conditions</th>
+                                                                <th>Condition Description</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($personalmedhistories as $key => $personalmedhistory)
+                                                                <tr>
+                                                                    <td style="width: 10px">{{ $key + 1 }}</td>
+                                                                    <td>{{ $personalmedhistory->disease_or_conditions }}
+                                                                    </td>
+                                                                    <td>{{ $personalmedhistory->comments }}t</td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                            <!-- /. medicatin card end-->
+
+
+
+
+                                        </div>
+                                        {{-- lab resukt list end --}}
+                                    </div>
+
+
+
                                 </div>
-                                <!-- /.tab-pane -->
+                                <!-- /.tab- medication form start -->
                                 <div class="tab-pane" id="medication">
                                     <!-- The timeline -->
-                                    <form method="POST" action="/clinic/doctor/detail/record/lab/{{ $student->id }}" >
+                                    <form method="POST" action="/clinic/doctor/detail/record/med/{{ $student->id }}">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <!-- input -->
@@ -118,14 +302,16 @@
                                                 <!-- input -->
                                                 <div class="form-group">
                                                     <label>Medication Frequency</label>
-                                                    <input class="form-control" placeholder="Enter ..." name="frequency" />
+                                                    <input class="form-control" placeholder="Enter ..."
+                                                        name="frequency" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <!-- input -->
                                                 <div class="form-group">
                                                     <label>Medication How Much</label>
-                                                    <input class="form-control" placeholder="Enter ..." name="how_much" />
+                                                    <input class="form-control" placeholder="Enter ..."
+                                                        name="how_much" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
@@ -145,10 +331,64 @@
                                     </form>
 
                                 </div>
-                                <!-- /.tab-pane -->
+                                <!-- /.tab- medication from end -->
 
-                                <div class="tab-pane" id="settings">
-                                    <form class="form-horizontal" method="POST" action="/clinic/doctor/detail/record/lab/{{ $student->id }}" >
+
+
+                                <!-- /.tab- medication form start -->
+                                <div class="tab-pane" id="personal">
+                                    <!-- The timeline -->
+                                    <form method="POST"
+                                        action="/clinic/doctor/detail/record/personal/{{ $student->id }}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <!-- input -->
+                                                <div class="form-group">
+                                                    <label>Disease Or Conditionse</label>
+                                                    <input class="form-control" placeholder="Enter ..."
+                                                        name="disease_or_conditions" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <!-- textarea -->
+                                                <div class="form-group">
+                                                    <label>About It</label>
+                                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="comments"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-10">
+                                                <!-- Bootstrap Switch -->
+                                                <div class="card card-secondary">
+
+                                                    <div class="card-body">
+                                                        <input type="checkbox" name="current"
+                                                            style="width:30px;height: 30px;" value="">
+                                                        <label>Still Active</label>
+
+                                                    </div>
+                                                </div>
+                                                <!-- /.card -->
+                                            </div>
+
+
+                                        </div>
+                                        <div class="card-footer p-0 ">
+                                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                            {{-- <button type="submit" class="btn btn-primary btn-lg">New</button> --}}
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <!-- /.tab- medication from end -->
+
+
+
+
+                                <div class="tab-pane" id="lab_form">
+                                    <form class="form-horizontal" method="POST"
+                                        action="/clinic/doctor/detail/record/lab/{{ $student->id }}">
                                         @csrf
 
                                         <div class="row">
@@ -157,8 +397,8 @@
                                                 <ul class="list-group col-sm-12">
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="blood" name="blood[]" value="Normal Blood"
-                                                                type="checkbox">
+                                                            <input class="custom-control-input" id="blood"
+                                                                name="blood[]" value="Normal Blood" type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
                                                                 for="blood">Blood</label>
@@ -168,8 +408,8 @@
 
                                                     <li class="list-group-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="faeces" name="feaces[]"  value="Normal Faeces"
-                                                                type="checkbox">
+                                                            <input class="custom-control-input" id="faeces"
+                                                                name="feaces[]" value="Normal Faeces" type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
                                                                 for="faeces">Faeces</label>
@@ -177,8 +417,8 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="urine" name="urin[]" value="Normal Urine"
-                                                                type="checkbox">
+                                                            <input class="custom-control-input" id="urine"
+                                                                name="urin[]" value="Normal Urine" type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
                                                                 for="urine">Urine</label>
@@ -186,8 +426,8 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="sputum" name="sputum[]" value="Normal Sputum"
-                                                                type="checkbox">
+                                                            <input class="custom-control-input" id="sputum"
+                                                                name="sputum[]" value="Normal Sputum" type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
                                                                 for="sputum">Sputum</label>
@@ -195,8 +435,8 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="swab" name="swap[]" value="Normal Swap"
-                                                                type="checkbox">
+                                                            <input class="custom-control-input" id="swab"
+                                                                name="swap[]" value="Normal Swap" type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
                                                                 for="swab">Swab</label>
@@ -204,8 +444,8 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="fluids" name="fluids[]" value="Normal Fluids"
-                                                                type="checkbox">
+                                                            <input class="custom-control-input" id="fluids"
+                                                                name="fluids[]" value="Normal Fluids" type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
                                                                 for="fluids">Fluids</label>
@@ -213,8 +453,8 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="tissue" name="tissue[]" value="Normal Tissue"
-                                                                type="checkbox">
+                                                            <input class="custom-control-input" id="tissue"
+                                                                name="tissue[]" value="Normal Tissue" type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
                                                                 for="tissue">Tissue</label>
@@ -222,7 +462,8 @@
                                                     </li>
                                                     <li class="list-group-item rounded-0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" id="cytology" name="cytology[]" value="Normal Cytology"
+                                                            <input class="custom-control-input" id="cytology"
+                                                                name="cytology[]" value="Normal Cytology"
                                                                 type="checkbox">
                                                             <label
                                                                 class="cursor-pointer font-italic d-block custom-control-label"
@@ -273,21 +514,21 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="blooda" name="blood[]" value="Bood Type 1"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="blooda"
+                                                                    name="blood[]" value="Bood Type 1" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="blooda">RBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="bloodb" name="blood[]" value="Bood Type 2"
-                                                                    type="checkbox">
-                                                                <label class="cursor-pointer  custom-control-label" 
+                                                                <input class="custom-control-input " id="bloodb"
+                                                                    name="blood[]" value="Bood Type 2" type="checkbox">
+                                                                <label class="cursor-pointer  custom-control-label"
                                                                     for="bloodb">WBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="bloodc" name="blood[]" value="Bood Type 3"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="bloodc"
+                                                                    name="blood[]" value="Bood Type 3" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="bloodc">HBC</label>
                                                             </div>
@@ -297,20 +538,23 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="feacesa" name="feaces[]" value="Faecesa Type 1"
+                                                                <input class="custom-control-input " id="feacesa"
+                                                                    name="feaces[]" value="Faecesa Type 1"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="faecesa">FRBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="feacesb" name="feaces[]" value="Faecesa Type 2"
+                                                                <input class="custom-control-input " id="feacesb"
+                                                                    name="feaces[]" value="Faecesa Type 2"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="feacesb">FWBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="feacesc" name="feaces[]" value="Faecesa Type 3"
+                                                                <input class="custom-control-input " id="feacesc"
+                                                                    name="feaces[]" value="Faecesa Type 3"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="feacesc">FHBC</label>
@@ -322,21 +566,21 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="urina" name="urin[]" value="Urine Type 1"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="urina"
+                                                                    name="urin[]" value="Urine Type 1" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="urina">URBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="urineb" name="urin[]" value="Urine Type 2"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="urineb"
+                                                                    name="urin[]" value="Urine Type 2" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="urineb">UWBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="urinc" name="urin[]" value="Urine Type 3"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="urinc"
+                                                                    name="urin[]" value="Urine Type 3" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="urinc">UHBC</label>
                                                             </div>
@@ -347,20 +591,23 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="sputuma" name="sputum[]" value="Sputuma Type 1"
+                                                                <input class="custom-control-input " id="sputuma"
+                                                                    name="sputum[]" value="Sputuma Type 1"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="sputuma">SRBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="sputumb"  name="sputum[]" value="Sputuma Type 2"
+                                                                <input class="custom-control-input " id="sputumb"
+                                                                    name="sputum[]" value="Sputuma Type 2"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="sputumb">SWBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="sputumc" name="sputum[]" value="Sputuma Type 3"
+                                                                <input class="custom-control-input " id="sputumc"
+                                                                    name="sputum[]" value="Sputuma Type 3"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="sputumc">SHBC</label>
@@ -372,21 +619,21 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="swapa"  name="swap[]" value="Swap Type 1"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="swapa"
+                                                                    name="swap[]" value="Swap Type 1" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="swapa">SRBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="swapb" name="swap[]" value="Swap Type 2"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="swapb"
+                                                                    name="swap[]" value="Swap Type 2" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="swapb">SWBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="swapc" name="swap[]" value="Swap Type 3"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="swapc"
+                                                                    name="swap[]" value="Swap Type 3" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="swapc">HBC</label>
                                                             </div>
@@ -396,21 +643,21 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="fluidsa" name="fluids[]" value="Fluid Type 1"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="fluidsa"
+                                                                    name="fluids[]" value="Fluid Type 1" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="fluidsa">FRBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="fluidsb"  name="fluids[]"  value="Fluid Type 2"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="fluidsb"
+                                                                    name="fluids[]" value="Fluid Type 2" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="fluidsb">FWBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="fluidsc" name="fluids[]"  value="Fluid Type 3"
-                                                                    type="checkbox">
+                                                                <input class="custom-control-input " id="fluidsc"
+                                                                    name="fluids[]" value="Fluid Type 3" type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="fluidsc">FHBC</label>
                                                             </div>
@@ -419,20 +666,23 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="tissuea" name="tissue[]"  value="Tisseu Type 1"
+                                                                <input class="custom-control-input " id="tissuea"
+                                                                    name="tissue[]" value="Tisseu Type 1"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="tissuea">TRBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="tissueb" name="tissue[]"  value="Tisseu Type 2"
+                                                                <input class="custom-control-input " id="tissueb"
+                                                                    name="tissue[]" value="Tisseu Type 2"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="tissueb">TWBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="tissuec" name="tissue[]"  value="Tisseu Type 3"
+                                                                <input class="custom-control-input " id="tissuec"
+                                                                    name="tissue[]" value="Tisseu Type 3"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="tissuec">THBC</label>
@@ -444,20 +694,23 @@
                                                     <li class="list-group-item rounded-0 col-sm-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="cytologya" name="cytology[]"  value="Cytology Type 1"
+                                                                <input class="custom-control-input " id="cytologya"
+                                                                    name="cytology[]" value="Cytology Type 1"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="cytologya">TRBC</label>
                                                             </div>
 
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="cytologyb" name="cytology[]" value="Cytology Type 2"
+                                                                <input class="custom-control-input " id="cytologyb"
+                                                                    name="cytology[]" value="Cytology Type 2"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="cytologyb">TWBC</label>
                                                             </div>
                                                             <div class="d-inline m-4">
-                                                                <input class="custom-control-input " id="cytologyc" name="cytology[]" value="Cytology Type 3"
+                                                                <input class="custom-control-input " id="cytologyc"
+                                                                    name="cytology[]" value="Cytology Type 3"
                                                                     type="checkbox">
                                                                 <label class="cursor-pointer  custom-control-label"
                                                                     for="cytologyc">THBC</label>
@@ -465,7 +718,7 @@
                                                         </div>
                                                     </li>
 
-                                                    
+
 
 
 

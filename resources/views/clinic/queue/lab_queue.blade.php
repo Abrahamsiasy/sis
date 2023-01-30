@@ -36,10 +36,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                           
                                             @foreach ($queues as $key => $queue)
+                                            
                                                 <tr>
-                                                    <td>{{$key}}</td>
-                                                    <td>{{ $queue->laRequest->student->student_id}}</td>
+                                                    <td>{{$key +1 }}</td>
+                                                    {{-- <td>{{ $queue->laRequest->student->student_id}}</td> --}}
+                                                    <td>{{ $queue->student->student_id}}</td>
                                                     <td>{{ $queue->student->first_name }}</td>
                                                     
                                                 </tr>

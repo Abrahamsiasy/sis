@@ -38,8 +38,19 @@ class DoctorController extends Controller
         // echo ($timeleft * (-1)). "<br>";
         // echo (PHP_EOL). "<br>";
         // echo (date('Y-m-d h:i:sa', strtotime($startdatetime) + $timeleft * (-1))). "<br>";
+        //dd(Queue::whereRaw('status = 0 ORDER BY id')->first());
+        //         SELECT * FROM students
+        // WHERE status = 0
+        // ORDER BY id
+        // LIMIT 1;
+        //dd(Queue::whereRaw('status = 5 ORDER BY id')->first());
+
         return view('clinic.doctor.doctor', [
             'students' => Queue::where('status', 0)->paginate(25),
+            'emergency' => Queue::where('status', 5)->paginate(25),
+            'minidemer' => Queue::whereRaw('status = 5 ORDER BY id')->first(),
+            'minid' =>  Queue::whereRaw('status = 0 ORDER BY id')->first()
+
         ]);
     }
 
@@ -108,8 +119,16 @@ class DoctorController extends Controller
     public function storeLabRequests(Request $request, Student $student)
     {
         $a = 1;
+
+
+        //create lab que with labreport id
+        $labQueue = new LabQueue();
+        $labQueue->student_id = $student->id;
+        $labQueue->student_id = $student->id;
+        $labQueue->save();
         //get all values from the check box except the token and save to lab queue
-        foreach ($request->except('_token') as $req) {
+        if($labQueue->id){
+           foreach ($request->except('_token') as $req) {
             foreach ($req as $labRequest) {
                 //echo $a++ . $labRequest . "<hr>";
                 $labRequests = new labRequest();
@@ -120,7 +139,10 @@ class DoctorController extends Controller
                 // echo $labRequest . "<hr>";
                 $labRequests->save();
             }
+            return redirect('/clinic/doctor/detail/' . $student->id)->with('status', 'Lab sent!');
+        } 
         }
+        
         //dd($labReport->id);
         //Labreport::create($formField);
 
@@ -128,6 +150,7 @@ class DoctorController extends Controller
             //create lab que with labreport id
             $labQueue = new LabQueue();
             $labQueue->lab_request_id = $labRequests->id;
+            $labQueue->student_id = $student->id;
             $labQueue->student_id = $student->id;
             $labQueue->save();
             // dd($labQueue->id);
@@ -141,8 +164,10 @@ class DoctorController extends Controller
     {
         $formField = $request->validate([
             'name' => 'required',
-            'dose'  => 'required',
-            'description' => 'required'
+            'amount'  => 'required',
+            'frequency' => 'required',
+            'why' => 'required',
+            'how_much' => 'required'
 
         ]);
         $histories = MedicalRecord::where('student_id', $student->id)->first();
@@ -164,7 +189,7 @@ class DoctorController extends Controller
 
 
         //redirect to its own page
-        return redirect('/doctor/detail/' . $student->id)->with('status', 'Medcin added!');
+        return redirect('/clinic/doctor/detail/' . $student->id)->with('status', 'Medcin added!');
     }
 
 
@@ -172,13 +197,14 @@ class DoctorController extends Controller
     //storeMedRecord
     public function storePersonalRecord(Request $request, Student $student)
     {
-        //dd("sfsdfs");
+        //dd($request);
         $formField = $request->validate([
             'disease_or_conditions' => 'required',
             'current' => 'required',
             'comments' => 'required'
 
         ]);
+        //dd($request);
         $histories = MedicalRecord::where('student_id', $student->id)->first();
         // $formField['doctor_id '] = auth()->user()->id;
         // $formField['student_id '] = $student->id;
@@ -190,6 +216,7 @@ class DoctorController extends Controller
         $personalmedicalrecord->current = $formField['current'];
         $personalmedicalrecord->comments = $formField['comments'];
         $personalmedicalrecord->medical_record_id = $histories->id;
+        //dd($personalmedicalrecord);
         $personalmedicalrecord->save();
         ($personalmedicalrecord);
         // // or anther method

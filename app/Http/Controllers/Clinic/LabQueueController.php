@@ -16,7 +16,8 @@ class LabQueueController extends Controller
      */
     public function index()
     {
-        //
+        //the assistan will accept the requestes an dupdate the queue based on lab request id to the queue
+        //dd(LabQueue::where('status', "0")->paginate(25));
         return view('clinic.queue.lab_queue',
         [
             'queues' => LabQueue::where('status', "0")->paginate(25),

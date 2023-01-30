@@ -63,6 +63,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
+
+                                            {{-- for emergency table raw start --}}
+                                            @foreach ($emergency as $key => $emer)
+                                                <tr>
+                                                    <td>{{ $key }}</td>
+                                                    <td>{{ $emer->student->student_id }}</td>
+                                                    <td>{{ $emer->student->first_name }}</td>
+
+                                                    {{-- <td>{{ $student->queues->created_at }}</td> --}}
+                                                    @if ($minidemer->id == $emer->id)
+                                                        <td><a href="/clinic/doctor/detail/{{ $emer->student->id }}"
+                                                                class="btn btn-danger">ACCEPT</>
+                                                        </td>
+                                                    @else
+                                                        <td><a href="/clinic/doctor/detail/{{ $emer->student->id }}"
+                                                                class="btn btn-danger disabled">ACCEPT</>
+                                                        </td>
+                                                    @endif
+                                                </td>
+                                                </tr>
+                                            @endforeach
+                                            {{-- for emergency only table raw end --}}
+
+
+
                                             @foreach ($students as $key => $student)
                                                 <tr>
                                                     <td>{{ $key }}</td>
@@ -70,11 +96,16 @@
                                                     <td>{{ $student->student->first_name }}</td>
 
 
-                                                    <td>{{ $student->queues->created_at }}</td>
-
-                                                    <td><a href="/clinic/doctor/detail/{{ $student->student->id }}"
-                                                            class="btn btn-primary">ACCEPT</>
-                                                    </td>
+                                                    {{-- <td>{{ $student->queues->created_at }}</td> --}}
+                                                    @if ($minid->id == $student->id)
+                                                        <td><a href="/clinic/doctor/detail/{{ $student->student->id }}"
+                                                                class="btn btn-primary">ACCEPT</>
+                                                        </td>
+                                                    @else
+                                                        <td><a href="/clinic/doctor/detail/{{ $student->student->id }}"
+                                                                class="btn btn-primary disabled">ACCEPT</>
+                                                        </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -87,6 +118,7 @@
                         <!-- Table with panel -->
                         </p>
                     </div>
+
                 </div>
             </div>
         </div>

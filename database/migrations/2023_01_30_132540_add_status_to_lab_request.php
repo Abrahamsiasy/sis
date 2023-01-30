@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal_records', function (Blueprint $table) {
-            $table->id();
-            $table->string('disease_or_conditions');
-            $table->boolean('current')->default(0);
-            $table->string('comments');
-            $table->timestamps();
+        Schema::table('lab_requests', function (Blueprint $table) {
+            //
+            $table->boolean('status')->default(0);
         });
     }
 
@@ -29,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_records');
+        Schema::table('lab_requests', function (Blueprint $table) {
+            //
+            $table->dropColumn('status');
+        });
     }
 };

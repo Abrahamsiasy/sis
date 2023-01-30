@@ -155,6 +155,7 @@ return new class extends Migration
         Schema::table('lab_queues', function (Blueprint $table) {
             $table->dropForeign('student_id');
             $table->dropForeign('lab_request_id');
+            $table->dropColumn('lab_request_id');
         });
         Schema::table('lab_requests', function (Blueprint $table) {
             $table->dropForeign('student_id');

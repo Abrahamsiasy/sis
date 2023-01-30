@@ -27,7 +27,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body table-responsive p-0">
                                     <table class="table table-hover text-nowrap">
-                                        
+
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -43,21 +43,25 @@
                                                     <td>{{ $key }}</td>
                                                     <td>{{ $student->student_id }}</td>
                                                     <td>{{ $student->first_name }}</td>
-                                                    <td>
-                                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                            <label class="btn bg-olive active">
-                                                                <input type="radio" name="options" id="option"
-                                                                    autocomplete="off" checked> NOR
-                                                            </label>
-                                                            <label class="btn btn-danger">
-                                                                <input type="radio" name="options" id="option"
-                                                                    autocomplete="off"> EMR
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                    <td><a href="/clinic/doctor/detail/{{ $student->id }}"
-                                                            class="btn btn-primary">ACCEPT</>
-                                                    </td>
+                                                    <form action="/clinic/reception/{{ $student->id }}" method="POST">
+                                                        @csrf
+                                                        <td>
+                                                            <div class="btn-group btn-group-toggle form-check" >
+                                                                <label class="btn bg-olive active">
+                                                                    <input type="radio" name="status" id="option" value="0" checked
+                                                                        autocomplete="off"> NOR
+                                                                </label>
+                                                                <label class="btn btn-danger">
+                                                                    <input type="radio" name="status" id="option1" value="5"
+                                                                        autocomplete="off"> EMR
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td> <button class="btn btn-primary" type="submit">ACCEPT</button>
+                                                            {{-- <a href="/clinic/reception/{{ $student->id }}"
+                                                                class="btn btn-primary"></> --}}
+                                                        </td>
+                                                    </form>
                                                 </tr>
                                             @endforeach
                                         </tbody>

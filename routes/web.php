@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('clinic/reception', [ReceptionController::class, 'index']);
-    Route::get('clinic/reception/{student}', [ReceptionController::class, 'show']);
+    Route::post('clinic/reception/{student}', [ReceptionController::class, 'show']);
 });
 
 
