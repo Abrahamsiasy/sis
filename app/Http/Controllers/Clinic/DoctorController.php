@@ -54,27 +54,46 @@ class DoctorController extends Controller
         ]);
     }
 
+    //get queid and change the status when it get accepted
+    public function changeQueueStatus($student_id){
+        $queueid = Queue::where('student_id', $student_id)->first();
+        $queue = Queue::where('id', $queueid->id)->first();
+        $queue->doctor_id = auth()->user()->id;
+        $queue->status = 1;
+        if($queue->save()){
+            return 1;
+        } else {
+            return 0;
+        }
+        
+    }
     public function show(
         Student $student,
         MedicalRecord $histories
     ) {
 
+        //dd(self::changeQueueStatus($student->id));
         //change queue status of the student when doctor accepts
         $queueid = Queue::where('student_id', $student->id)->first();
         //dd($queue->id);
         //update queue status
-        $queue = Queue::where('id', $queueid->id)->first();
+
+        /* $queue = Queue::where('id', $queueid->id)->first();
         $queue->doctor_id = auth()->user()->id;
         $queue->status = 1;
         $queue->save();
         //dd($queue);
+        */
 
 
         //
-        $histories = MedicalRecord::where('student_id', $student->id)->first();
-        //dd($histories);
+        if(self::changeQueueStatus($student->id)){
+           $histories = MedicalRecord::where('student_id', $student->id)->first();
+            //dd($histories);
 
-        $labhistories = LabResult::where('student_id', $student->id)->get();
+            $labhistories = LabResult::where('student_id', $student->id)->get(); 
+        }
+        
         //dd($labhistories); // returns empty array
         //dd(count(Medication::where('medicalhistories_id', $histories->id)->get()))
 
@@ -112,6 +131,39 @@ class DoctorController extends Controller
             'personalmedhistories' => $personalmedhistories
         ]);
     }
+
+    public function updateBasicRecord(Request $request, Student $student){
+
+        $formField = $request->validate([
+            'blood_type' => 'required',
+            'height'  => 'required',
+            'weight' => 'required',
+        ]);
+        $histories = MedicalRecord::where('student_id', $student->id)->first();
+        $personalmedicalrecord = new PersonalRecord();
+
+        $histories->blood_type = $formField['blood_type'];
+        $histories->height = $formField['height'];
+        $histories->weight = $formField['weight'];
+        //dd($personalmedicalrecord);
+        $histories->save();
+        if($histories->save()){
+            //dd("Success");
+            return redirect('/clinic/doctor/detail/' . $student->id)->with('status', 'Medcin added!');
+        }
+        // // or anther method
+
+
+        //redirect to its own page
+        return redirect('/doctor/detail/' . $student->id)->with('status', 'Medcin added!');
+
+
+
+
+
+
+        dd($request);
+    }
     //get doctor id from loged in user(AUTH) the creat a lab report
     //with that doctor id for lab que and create lab que to be edited
     //with lab assistant id then redirect back to doc page with list of student
@@ -136,6 +188,8 @@ class DoctorController extends Controller
                 $labRequests->description = $labRequest;
                 $labRequests->student_id = $student->id;
                 $labRequests->doctor_id = auth()->user()->id;
+                $labRequests->lab_queue_id = $labQueue->id;
+
                 // echo $labRequest . "<hr>";
                 $labRequests->save();
             }

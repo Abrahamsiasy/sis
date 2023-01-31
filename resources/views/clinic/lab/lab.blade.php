@@ -50,7 +50,7 @@
                                                     <td>{{ $LabRequest->student->first_name }}</td>
                                                     <td>{{ $LabRequest->title }}</td>
 
-                                                    <td><a href="/clinic/lab/detail/{{ $LabRequest->student->id }}"
+                                                    <td><a href="/clinic/lab/detail/{{ $LabRequest->student->id }}/{{ $LabRequest->id }}"
                                                             class="btn btn-primary">ACCEPT</>
                                                     </td>
                                                 </tr>

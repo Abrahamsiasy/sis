@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::table('lab_results', function (Blueprint $table) {
             //
             $table->string('title');
-            $table->string('description');
-            $table->string('comment');
+            $table->string('description')->nullable();
+            $table->string('comment')->nullable();
         });
     }
 

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('womens', function (Blueprint $table) {
             $table->id();
-            $table->date('last_menstrual_cycle');
-            $table->tinyInteger('number_of_pregnancies')->default(0);
+            $table->date('last_menstrual_cycle')->nullable();
+            $table->tinyInteger('number_of_pregnancies')->nullable();
             $table->string('pregnancie_complications')->nullable();
-            $table->tinyInteger('number_of_live_births:')->default(0);
+            $table->tinyInteger('number_of_live_births:')->nullable();
             $table->date('manopause_date')->nullable();
             $table->timestamps();
         });

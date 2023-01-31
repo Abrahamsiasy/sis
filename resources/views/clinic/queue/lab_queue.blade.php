@@ -43,6 +43,7 @@
                                                     <td>{{$key +1 }}</td>
                                                     {{-- <td>{{ $queue->laRequest->student->student_id}}</td> --}}
                                                     <td>{{ $queue->student->student_id}}</td>
+                                                    <td>{{ $queue->student->student_id}}</td>
                                                     <td>{{ $queue->student->first_name }}</td>
                                                     
                                                 </tr>

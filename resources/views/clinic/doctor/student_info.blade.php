@@ -23,13 +23,12 @@
                 <div class="col-md-3">
 
                     <!-- Profile Image -->
+
                     <div class="card card-primary card-outline">
+                        <!-- /.card-basic info start -->
                         <div class="card-body box-profile">
-
-
                             <h3 class="profile-username text-center">{{ $student->first_name . ' ' . $student->last_name }}
                             </h3>
-
                             <p class="text-muted text-center">
                                 {{ $student->sex . ' ' }}
                                 @php
@@ -43,16 +42,118 @@
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Blood Type</b> <a class="float-right">A+</a>
+                                    <b>Blood Type</b> <a class="float-right">{{ $histories->blood_type }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Highet</b> <a class="float-right">1.83</a>
+                                    <b>Highet</b> <a class="float-right">{{ $histories->height }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Weight</b> <a class="float-right">77</a>
+                                    <b>Weight</b> <a class="float-right">{{ $histories->weight }}</a>
                                 </li>
+                                @if ($student->sex == 'F')
+                                    <li class="list-group-item">
+                                        <b>NO. of Pregnancies</b> <a class="float-right"></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>NO. of Live Births</b> <a class="float-right"></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Last Menstrual Cycle</b> <a class="float-right"></a>
+                                    </li>
+                                @endif
                             </ul>
+
                         </div>
+                        <!-- /.card-basic info end -->
+                        <!-- /.card- women info start -->
+
+                        <!-- /.card- eomrn info end -->
+
+                        <div class="card card-primary card-outline" id="accordion">
+                            <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
+                                <div class="card-header">
+                                    <h4 class="card-title w-100">
+                                        Update Weight and Highet
+                                    </h4>
+                                </div>
+                            </a>
+                            {{-- form to update weight, hightt and blood type start --}}
+                            <form method="POST" action="/clinic/doctor/detail/record/basic/{{ $student->id }}">
+                                @csrf
+                                <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <!-- input -->
+                                        <div class="form-group">
+                                            <label>Blood Type</label>
+                                            <input class="form-control" placeholder="Enter ..." name="blood_type" />
+                                        </div>
+                                        <!-- input -->
+                                        <!-- input -->
+                                        <div class="form-group">
+                                            <label>Weight In Kg</label>
+                                            <input class="form-control" placeholder="Enter ..." name="weight" />
+                                        </div>
+                                        <!-- input -->
+                                        <div class="form-group">
+                                            <label>Highet in meter</label>
+                                            <input class="form-control" placeholder="Enter ..." name="height" />
+                                        </div>
+                                        <!-- input -->
+                                        <input class="btn btn-primary btn-sm" type="submit">
+                                    </div>
+                                </div>
+                            </form>
+                            {{-- form to update weight, hightt and blood type --}}
+
+
+                        </div>
+                        @if ($student->sex == 'F')
+                            <div class="card card-primary card-outline">
+                                <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
+                                    <div class="card-header">
+                                        <h4 class="card-title w-100">
+                                            Personal Questions for Girls
+                                        </h4>
+                                    </div>
+                                </a>
+
+                                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                    {{-- form to update weight, Femal info start --}}
+                                    <form method="POST" action="/clinic/doctor/detail/record/basic/{{ $student->id }}">
+                                        <div class="card-body">
+                                            <!-- input -->
+                                            <div class="form-group">
+                                                <label>Medication Name</label>
+                                                <input class="form-control" placeholder="Enter ..." name="name" />
+                                            </div>
+                                            <!-- input -->
+                                            <div class="form-group">
+                                                <label>Medication Name</label>
+                                                <input class="form-control" placeholder="Enter ..." name="name" />
+                                            </div>
+                                            <!-- input -->
+                                            <div class="form-group">
+                                                <label>Medication Name</label>
+                                                <input class="form-control" placeholder="Enter ..." name="name" />
+                                            </div>
+                                            <!-- input -->
+                                            <div class="form-group">
+                                                <label>Medication Name</label>
+                                                <input class="form-control" placeholder="Enter ..." name="name" />
+                                            </div>
+                                            <!-- input -->
+                                            <div class="form-group">
+                                                <label>Medication Name</label>
+                                                <input class="form-control" placeholder="Enter ..." name="name" />
+                                            </div>
+                                            <!-- input -->
+                                            <input class="btn btn-primary btn-sm" type="submit">
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        @endif
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
@@ -64,11 +165,12 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#activity"
-                                        data-toggle="tab">Medical Record</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Medical
+                                        Record</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#medication" data-toggle="tab">Medication</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#lab_form" data-toggle="tab">Labratory Form</a>
+                                <li class="nav-item"><a class="nav-link" href="#lab_form" data-toggle="tab">Labratory
+                                        Form</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="#personal" data-toggle="tab">Personal
                                         Form</a>
@@ -94,9 +196,12 @@
                                                     <ul class="pagination pagination-sm float-right">
                                                         <li class="page-item"><a class="page-link"
                                                                 href="#">&laquo;</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">2</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a>
+                                                        </li>
                                                         <li class="page-item"><a class="page-link"
                                                                 href="#">&raquo;</a></li>
                                                     </ul>
@@ -166,11 +271,14 @@
                                                         <ul class="pagination pagination-sm float-right">
                                                             <li class="page-item"><a class="page-link"
                                                                     href="#">&laquo;</a></li>
-                                                            <li class="page-item"><a class="page-link" href="#">1</a>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">1</a>
                                                             </li>
-                                                            <li class="page-item"><a class="page-link" href="#">2</a>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">2</a>
                                                             </li>
-                                                            <li class="page-item"><a class="page-link" href="#">3</a>
+                                                            <li class="page-item"><a class="page-link"
+                                                                    href="#">3</a>
                                                             </li>
                                                             <li class="page-item"><a class="page-link"
                                                                     href="#">&raquo;</a></li>

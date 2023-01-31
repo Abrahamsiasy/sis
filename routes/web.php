@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::post('clinic/doctor/detail/record/lab/{student}', [DoctorController::class, 'storeLabRequests']);
     Route::post('clinic/doctor/detail/record/med/{student}',  [DoctorController::class, 'storeMedRecord']);
     Route::post('clinic/doctor/detail/record/personal/{student}',  [DoctorController::class, 'storePersonalRecord']);
+    Route::post('clinic/doctor/detail/record/basic/{student}',  [DoctorController::class, 'updateBasicRecord']);
     Route::get('clinic/doctor/detail/{student}',  [DoctorController::class, 'show']);
     Route::delete('clinic/doctor/detail/{student}',  [DoctorController::class, 'delete']);
 });
@@ -61,8 +62,8 @@ Route::middleware('auth')->group(function () {
 // Route::middleware('auth')->group(['prefix' => 'clinic'], function () {
 Route::middleware('auth')->group(function () {
     Route::get('clinic/lab', [LabController::class, 'index']);
-    Route::get('clinic/lab/detail/{student}', [LabController::class, 'show']);
-    Route::post('clinic/lab/detail/{student}', [LabController::class, 'storeLabResultss']);
+    Route::get('clinic/lab/detail/{student}/{labRequest}', [LabController::class, 'show']);
+    Route::post('clinic/lab/detail/{student}/{labRequest}', [LabController::class, 'storeLabResults']);
 });
 
 Route::middleware('auth')->group(function () {
