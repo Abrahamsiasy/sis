@@ -3,10 +3,10 @@ import Popper from '@popperjs/core/dist/umd/popper.js';
 import jQuery from 'jquery';
 import axios from 'axios';
 
-import 'bootstrap';
-require('node-waves');
-require('mdbootstrap');
-window._ = lodash;
+// import 'bootstrap';
+// require('node-waves');
+// require('mdbootstrap');
+// window._ = lodash;
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
