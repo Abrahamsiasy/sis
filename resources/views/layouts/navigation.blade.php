@@ -32,19 +32,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="examples/legacy-user-menu.html" class="nav-link">
+                        <a href="/clinic/reception" class="nav-link">
                             <i class="fa-solid fa-bell-concierge"></i>
                             <p>Receptionist</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="examples/legacy-user-menu.html" class="nav-link">
+                        <a href="/clinic/queue'" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Queues</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="examples/legacy-user-menu.html" class="nav-link">
+                        <a href="/clinic/labqueue" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Lab Queues</p>
                         </a>

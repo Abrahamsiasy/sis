@@ -30,9 +30,10 @@ class LabQueueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cu()
     {
         //
+        return view('clinic.queue.cu');
     }
 
     /**

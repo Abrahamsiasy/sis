@@ -69,4 +69,5 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('clinic/queue', [QueueController::class, 'index']);
     Route::get('clinic/labqueue', [LabQueueController::class, 'index']);
+    Route::get('clinic/cu', [LabQueueController::class, 'cu']);
 });

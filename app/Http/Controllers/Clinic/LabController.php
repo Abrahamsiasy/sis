@@ -124,4 +124,6 @@ class LabController extends Controller
             return redirect('/clinic/lab')->with('status', 'Lab Result submited to the doctor');
         }
     }
+
+    
 }
