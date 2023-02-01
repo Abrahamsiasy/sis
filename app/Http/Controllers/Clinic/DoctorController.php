@@ -71,6 +71,7 @@ class DoctorController extends Controller
         Student $student,
         MedicalRecord $histories
     ) {
+        $personalmedhistories=null;
 
         //dd(self::changeQueueStatus($student->id));
         //change queue status of the student when doctor accepts
@@ -106,6 +107,7 @@ class DoctorController extends Controller
             $medicalhistories->doctor_id  = auth()->user()->id;
             //save the history table
             $medicalhistories->save();
+            $medhistories=null;
 
             //$medhistories = Medication::where('medicalhistories_id', $histories->id)->get();
 

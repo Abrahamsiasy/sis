@@ -16,6 +16,10 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "mdbootstrap": "^4.20.0",
+        "node-waves": "^0.7.6"
     }
 
 }

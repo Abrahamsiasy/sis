@@ -21,9 +21,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-
                     <!-- Profile Image -->
-
                     <div class="card card-primary card-outline">
                         <!-- /.card-basic info start -->
                         <div class="card-body box-profile">
@@ -42,7 +40,8 @@
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Blood Type</b> <a class="float-right">{{ $histories->blood_type }}</a>
+                                    <b>Blood Type</b> <a
+                                        class="float-right">{{ $histories->blood_type == null ? $histories->blood_type : 'unknown' }}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Highet</b> <a class="float-right">{{ $histories->height }}</a>
@@ -157,8 +156,6 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
-
-
                 </div>
                 <!-- /.col -->
                 <div class="col-md-9">
