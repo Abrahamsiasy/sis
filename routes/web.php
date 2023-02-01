@@ -49,8 +49,8 @@ Route::middleware('auth')->group(function () {
 // //Doctor
 // Route::group(['prefix' => 'clinic', 'as' => 'doctor.', 'middleware' => ['auth', 'doctor']], function () {
 // Route::middleware('auth')->group(['prefix' => 'clinic'], function () {
-Route::middleware('auth')->group(function () {
-    Route::get('clinic/doctor', [DoctorController::class, 'index']);
+Route::middleware(['auth', 'doctor'])->group(function () {
+    Route::get('clinic/doctor', [DoctorController::class, 'index'])->name('doctor');;
     Route::post('clinic/doctor/detail/record/lab/{student}', [DoctorController::class, 'storeLabRequests']);
     Route::post('clinic/doctor/detail/record/med/{student}',  [DoctorController::class, 'storeMedRecord']);
     Route::post('clinic/doctor/detail/record/personal/{student}',  [DoctorController::class, 'storePersonalRecord']);
@@ -60,13 +60,13 @@ Route::middleware('auth')->group(function () {
 });
 // Route::group(['prefix' => 'clinic', 'as' => 'lab.', 'middleware' => ['auth', 'lab']], function () {
 // Route::middleware('auth')->group(['prefix' => 'clinic'], function () {
-Route::middleware('auth')->group(function () {
-    Route::get('clinic/lab', [LabController::class, 'index']);
+Route::middleware(['auth', 'lab'])->group(function () {
+    Route::get('clinic/lab', [LabController::class, 'index'])->name('lab');
     Route::get('clinic/lab/detail/{student}/{labRequest}', [LabController::class, 'show']);
     Route::post('clinic/lab/detail/{student}/{labRequest}', [LabController::class, 'storeLabResults']);
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('clinic/queue', [QueueController::class, 'index']);
-    Route::get('clinic/labqueue', [LabQueueController::class, 'index']);
+Route::middleware(['auth', 'user'])->group(function () {
+    Route::get('clinic/queue', [QueueController::class, 'index'])->name('rec');
+    Route::get('clinic/labqueue', [LabQueueController::class, 'index'])->name('recl');
 });
