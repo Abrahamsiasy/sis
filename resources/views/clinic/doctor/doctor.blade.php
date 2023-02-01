@@ -12,6 +12,9 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
+
+    {{ auth()->user()->rol_id }}
+
     <!-- /.content-header -->
 
     <!-- Main content -->
