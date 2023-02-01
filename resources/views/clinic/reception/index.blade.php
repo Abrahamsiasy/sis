@@ -40,7 +40,7 @@
                                         <tbody>
                                             @foreach ($students as $key => $student)
                                                 <tr>
-                                                    <td>{{ $key }}</td>
+                                                    <td>{{ $key + 1 }}</td>
                                                     <td>{{ $student->student_id }}</td>
                                                     <td>{{ $student->first_name }}</td>
                                                     <form action="/clinic/reception/{{ $student->id }}" method="POST">
@@ -69,6 +69,7 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                            {{ $students->links()}}
 
                         </div>
                         <!-- Table with panel -->
